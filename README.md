@@ -1,6 +1,9 @@
 # MatAgent
 A generative framework for interpretable and targeted inorganic materials design using diffusion-based generation, property prediction, and LLM-driven reasoning.
 
+## Requirements
+- Python 3.12
+
 ## Installation
 ### Install PyTorch
 First, install PyTorch. For example, with CUDA 12.4, you can install PyTorch as follows:
