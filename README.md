@@ -50,5 +50,5 @@ $ matagent-inference --use_planning --data_path "./data/mp_20/train.csv" --n_ini
 }
 ```
 
-## References
+## Acknowledgement
 This project was primarily built upon [CDVAE](https://github.com/txie-93/cdvae), [DiffCSP](https://github.com/jiaor17/DiffCSP), [ComFormer](https://github.com/divelab/AIRS/tree/main/OpenMat/ComFormer), and [MatExpert](https://github.com/BangLab-UdeM-Mila/MatExpert).
