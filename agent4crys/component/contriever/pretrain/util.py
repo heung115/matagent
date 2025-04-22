@@ -12,6 +12,10 @@ from agent4crys.component.contriever.util.data import MyDataset
 def load_model():
     current_dir = Path(os.path.dirname(os.path.abspath(__file__)))
     model_path = current_dir / "best_model.pth"
+    if not model_path.exists():
+        raise FileNotFoundError(
+            f"Model file not found at {model_path}. You need to download the model first."
+        )
     tokenizer = torch.load(model_path)["tokenizer"]
     model = SimCLR(tokenizer)
     model.load_state_dict(torch.load(model_path)["model_state_dict"])
