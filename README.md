@@ -37,7 +37,7 @@ After installation, run the inference script:
 $ matagent-inference --use_planning --data_path "./data/mp_20/train.csv" --n_init 1 --n_iterations 16 --target_value -3.8
 ```
 Here, the command parameters control the execution as follows:
-- `--use_planning`: Wether to conduct tool-assisted Planning and Proposition
+- `--use_planning`: Use tool-assisted Planning and Proposition
 - `--data_path`: Path to the dataset used for sampling initial compositions
 - `--n_init`: Number of independent initializations to perform
 - `--n_iterations`: Number of iterations for each independent run
