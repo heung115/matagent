@@ -6,6 +6,8 @@ from .planner import Planner
 
 def load_proposer(args, target_prompt, knowledge_base):
     llm_model = args.llm_model
+    base_url = getattr(args, "base_url", None)
+
     if llm_model == "gpt-4o":
         model_id = "gpt-4o-2024-08-06"
         proposer = OAProposer(
@@ -13,6 +15,7 @@ def load_proposer(args, target_prompt, knowledge_base):
             target_prompt=target_prompt,
             knowledge_base=knowledge_base,
             gpt_model=model_id,
+            base_url=base_url,
         )
         if args.use_planning:
             return Planner(proposer)
@@ -25,6 +28,7 @@ def load_proposer(args, target_prompt, knowledge_base):
             target_prompt=target_prompt,
             knowledge_base=knowledge_base,
             gpt_model=model_id,
+            base_url=base_url,
         )
         if args.use_planning:
             return Planner(proposer)
@@ -37,6 +41,7 @@ def load_proposer(args, target_prompt, knowledge_base):
             target_prompt=target_prompt,
             knowledge_base=knowledge_base,
             gpt_model=model_id,
+            base_url=base_url,
         )
         if args.use_planning:
             return Planner(proposer)
@@ -49,6 +54,31 @@ def load_proposer(args, target_prompt, knowledge_base):
             target_prompt=target_prompt,
             knowledge_base=knowledge_base,
             gpt_model=model_id,
+            base_url=base_url,
+        )
+        if args.use_planning:
+            return Planner(proposer)
+        else:
+            return proposer
+    # 로컬 모델 지원
+    elif llm_model in [
+        "llama3.2",
+        "llama3.1",
+        "llama2",
+        "mistral",
+        "codellama",
+        "qwen",
+        "gemma",
+        "gpt-oss:20b",
+        "gpt-oss",
+    ]:
+        # Ollama 모델명으로 사용
+        proposer = OAProposer(
+            target_val=args.target_value,
+            target_prompt=target_prompt,
+            knowledge_base=knowledge_base,
+            gpt_model=llm_model,
+            base_url=base_url or "http://localhost:11434/v1",
         )
         if args.use_planning:
             return Planner(proposer)

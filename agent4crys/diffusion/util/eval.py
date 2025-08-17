@@ -10,12 +10,15 @@ def load_model(model_path):
     if not isinstance(model_path, Path):
         model_path = Path(model_path)
     file_path = model_path / "best_model.pth"
-    cfg = torch.load(file_path)["cfg"]
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    cfg = torch.load(file_path, map_location=device)["cfg"]
     model = retrieve_model(cfg)
-    state_dict = torch.load(file_path)["model_state_dict"]
+    state_dict = torch.load(file_path, map_location=device)["model_state_dict"]
     model.load_state_dict(state_dict)
-    lattice_scaler = torch.load(file_path)["lattice_scaler"]
-    scaler = torch.load(file_path)["scaler"]
+    lattice_scaler = torch.load(file_path, map_location=device)["lattice_scaler"]
+    scaler = torch.load(file_path, map_location=device)["scaler"]
     model.lattice_scaler, model.scaler = lattice_scaler, scaler
     return model, cfg
 

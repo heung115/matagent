@@ -43,10 +43,26 @@ def parse_args():
             "o3-mini",
             "gpt-4o",
             # "gpt-3.5-turbo",
+            "llama3.2",
+            "llama3.1",
+            "llama2",
+            "mistral",
+            "codellama",
+            "qwen",
+            "gemma",
+            "gpt-oss:20b",
+            "gpt-oss",
             # "claude-3-5",
         ],
         default="gpt-4o",
         help="LLM to use",
+    )
+
+    parser.add_argument(
+        "--base_url",
+        type=str,
+        default=None,
+        help="Base URL for local model API (e.g., http://localhost:11434/v1 for Ollama)",
     )
 
     parser.add_argument(
